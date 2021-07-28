@@ -22,12 +22,13 @@ Customer.createCustomer =  ( name, gender, city, phone, email, address, password
     })
     promise.then( (results) =>{
       results;
-      sql.query("INSERT IGNORE INTO customer SET ?", [{  name: name, gender: gender, city: city, phone: phone, email: email, address: address, password: results}], (err, res) => {
+      sql.query("INSERT IGNORE INTO customers SET ?", [{  name: name, gender: gender, city: city, phone: phone, email: email, address: address, password: results}], (err, res) => {
         if (err) {
+          console.log("err1",err)
           result(err, null);
           return;
         }
-        if (res.insertId != 0) {
+        // if (res.insertId != 0) {
           result(null,
             {
               id: res.insertId,
@@ -39,12 +40,43 @@ Customer.createCustomer =  ( name, gender, city, phone, email, address, password
               address: address
             });
           return;
-        }
-        result({ kind: "duplicate_record",  }, null);
+        // }
+        // console.log("err2", err);
+        // result({ kind: "duplicate_record",  }, null);
       });
     }).catch((error)=>{
       result(error, null);
       return;   
     })
 };
+
+Customer.updateCustomer = (name, gender, city, phone, email, address, password, id, result) => {
+  sql.query("UPDATE cutomers SET name = ?, gender = ?, city= ?, phone = ?, email = ?, address = ?, password = ?, where id = ?", [name, gender, city, phone, email, address, password, id], (err, res) =>{
+    if(err) {
+      result(err, null);
+      return;
+    }
+    if(res.affectedRows == 0) {
+      result({ kind : "not_found"}, null);
+      return;
+    }
+    result(null, {id:id, name, gender, city, phone, email, address, password});
+  });
+};
+
+Customer.findCustomer = (customerId, result) =>{
+  sql.query("select * from customers where id = ? ", [customerId], (err, res)=> {
+    if(err){
+      result(err, null);
+      return;
+    } 
+  if(res.length) {
+    result(null, res);
+    return;
+  }
+  result({
+    kind : "not_found" 
+  }, null)
+  })
+}
 module.exports = Customer;

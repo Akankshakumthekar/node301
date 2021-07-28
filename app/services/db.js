@@ -1,13 +1,15 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const dbconfig = require('../config/db.config.js');
-const connection = mysql.createPool({
-    host : dbconfig.host,
-    user: dbconfig.user,
-    password: dbconfig.password,
-    db: dbconfig.db
+const connection = mysql.createConnection({
+    host : dbconfig.HOST,
+    user: dbconfig.USER,
+    password: dbconfig.PASSWORD,
+    database: dbconfig.DB
 });
-connection.query('select * 1 + 1', (req, res) => {
-    /*
-    */
+connection.connect((err) => {
+    if(err) {
+        console.log(err)
+    }
+    
 });
 module.exports = connection;
