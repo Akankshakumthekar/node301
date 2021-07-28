@@ -1,7 +1,7 @@
 const sql = require("./db.js");
 const bcrypt = require('bcryptjs');
 const Customer = function(Customer){
-    this.name = Customer.name;
+  this.name = Customer.name;
 	this.gender = Customer.gender;
 	this.city = Customer.city;
 	this.phone = Customer.phone;
