@@ -29,6 +29,16 @@ Customer.createCustomer =  ( name, gender, city, phone, email, address, password
           return;
         }
         // if (res.insertId != 0) {
+          console.log(
+            "id", res.insertId,
+              "name: ",name,
+              "gender:", gender,
+              "city:", city,
+              "phone:", phone,
+              "email:", email,
+              "address:", address,
+              "password", results
+          )
           result(null,
             {
               id: res.insertId,
@@ -50,9 +60,10 @@ Customer.createCustomer =  ( name, gender, city, phone, email, address, password
     })
 };
 
-Customer.updateCustomer = (name, gender, city, phone, email, address, password, id, result) => {
-  sql.query("UPDATE cutomers SET name = ?, gender = ?, city= ?, phone = ?, email = ?, address = ?, password = ?, where id = ?", [name, gender, city, phone, email, address, password, id], (err, res) =>{
+Customer.updateCustomer = (name, gender, city, phone, email, address, id, result) => {
+  sql.query("UPDATE customers SET name = ?, gender = ?, city= ?, phone = ?, email = ?, address = ? where id = ? ", [name, gender, city, phone, email, address, id], (err, res) =>{
     if(err) {
+      console.log("error", err)
       result(err, null);
       return;
     }
@@ -60,7 +71,7 @@ Customer.updateCustomer = (name, gender, city, phone, email, address, password, 
       result({ kind : "not_found"}, null);
       return;
     }
-    result(null, {id:id, name, gender, city, phone, email, address, password});
+    result(null, {id:id, name, gender, city, phone, email, address});
   });
 };
 
@@ -77,6 +88,63 @@ Customer.findCustomer = (customerId, result) =>{
   result({
     kind : "not_found" 
   }, null)
+  })
+}
+
+Customer. removeCustomer = (customerId, result) =>{
+  sql.query("DELETE from customers where id = ?", [customerId], (err, res) => {
+    if(err){
+      result(null,err);
+      return;
+    }
+    if(res.affectedRows == 0) {
+      result({ kind : "not_found"}, null);
+      return;
+    }
+    result(null, res);
+  })
+}
+
+Customer.findEmailandPassword = (email, password, result)=>{
+  sql.query("SELECT password from customers where email = ?", [email], (err, resp)=>{
+    const promise = new Promise((resolve, reject) =>{
+      const dbpassword = JSON.stringify(resp[0,0]);
+      const obj = JSON.parse(dbpassword);
+      const values = Object.values(obj);
+      const pass = values[0]
+
+      const isPasswordMatch = bcrypt.compare(password, pass);
+      if(dbpassword != undefined){
+        resolve(isPasswordMatch)
+        return;
+      } else{
+        reject( result ({kind: "not_found"}, null));
+        return;
+      }
+    })
+    promise.then((results) =>{
+      results;
+      if(results){
+        const dbpassword = JSON.stringify(resp[0,0]);
+        const obj = JSON.parse(dbpassword);
+        const values = Object.values(obj);
+        const pass = values[0];
+        sql.query("SELECT * from customers where email = ? AND password = ?", [email, pass], (err, res) =>{
+         if(err){
+           result(err, null)
+           return;
+         } 
+         result(null, {kind: true})
+         return;
+        })
+      } else{
+        result({ kind : "incorrect_password"}, null)
+        return
+      }
+    }) .catch(( error) =>{
+      result({ kind: "incorrect password or email"}, null)
+      return;
+    })
   })
 }
 module.exports = Customer;
