@@ -1,6 +1,6 @@
 const Token = require("../services/token.services.js");
 
-Token.verifyToken = (req, res, next)=>{
+exports.verifyToken = (req, res, next)=>{
     const bearerHeader = req.headers['authorization'];
 
     if(typeof bearerHeader !== 'undefined'){
@@ -9,7 +9,7 @@ Token.verifyToken = (req, res, next)=>{
         req.token = bearerToken;
         next();
     } else{
-        res.sendStatis(403);
+        res.sendStatus(403);
     }
 }
 

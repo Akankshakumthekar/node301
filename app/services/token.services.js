@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Token = function(Token){
     this.name = Token.name;
-	this.email = Token.email;
+	  this.email = Token.email;
     this.password = Token.password;
     this.role = Token.role;
 }
@@ -42,7 +42,7 @@ Token.createToken = (email, password, result)=>{
                 const values = Object.values(obj);
                 const role = values[4];
                 if(role === "admin"){
-                    jwt.sign({userdata: userdata}, 12345, {expiresIn: '1d'}, (err, token) =>{
+                    jwt.sign({userdata: userdata}, "12345", {expiresIn: '1d'}, (err, token) =>{
                         if(err){
                             result(err, null)
                             return;
@@ -76,7 +76,7 @@ Token.createToken = (email, password, result)=>{
           req.token = bearerToken;
           next();
       } else{
-          res.sendStatis(403);
+          res.sendStatus(403);
       }
   }
 

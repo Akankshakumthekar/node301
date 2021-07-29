@@ -24,21 +24,10 @@ Customer.createCustomer =  ( name, gender, city, phone, email, address, password
       results;
       sql.query("INSERT IGNORE INTO customers SET ?", [{  name: name, gender: gender, city: city, phone: phone, email: email, address: address, password: results}], (err, res) => {
         if (err) {
-          console.log("err1",err)
           result(err, null);
           return;
         }
         // if (res.insertId != 0) {
-          console.log(
-            "id", res.insertId,
-              "name: ",name,
-              "gender:", gender,
-              "city:", city,
-              "phone:", phone,
-              "email:", email,
-              "address:", address,
-              "password", results
-          )
           result(null,
             {
               id: res.insertId,
