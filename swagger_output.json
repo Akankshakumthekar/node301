@@ -1,0 +1,305 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "customer services",
+    "description": "customer services API documentation "
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Customer"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/customer/create-customer": {
+      "post": {
+        "tags": [
+          "Customer"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "newCustomer",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "john"
+                },
+                "gender": {
+                  "type": "string",
+                  "example": "F"
+                },
+                "city": {
+                  "type": "string",
+                  "example": "mumbai"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "7889788960"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "john@gmail.com"
+                },
+                "address": {
+                  "type": "string",
+                  "example": "mumbai"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "Test@3"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/customer/update-customer": {
+      "post": {
+        "tags": [
+          "Customer"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "newCustomer",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "1"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "john"
+                },
+                "gender": {
+                  "type": "string",
+                  "example": "F"
+                },
+                "city": {
+                  "type": "string",
+                  "example": "mumbai"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "7889788960"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "john@gmail.com"
+                },
+                "address": {
+                  "type": "string",
+                  "example": "mumbai"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/customer/find-customer": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "customerId",
+            "description": "enter customerID",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/customer/delete-cutomer": {
+      "delete": {
+        "tags": [
+          "Customer"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "newCustomer",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "customerId": {
+                  "type": "string",
+                  "example": "1"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/customer/login": {
+      "post": {
+        "tags": [
+          "Customer"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "newCustomer",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "admin@gmail.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "test@12"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/token/create-token": {
+      "post": {
+        "tags": [
+          "token"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "newToken",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "admin@gmail.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "test@12"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {},
+  "basepath": "/",
+  "securityDefinations": {
+    "bearerAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "bearerFormat": "JWT",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}
