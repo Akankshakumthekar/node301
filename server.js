@@ -1,3 +1,4 @@
+const dbConfig = require('../node301/app/config/db.config.js');
 const express = require('express');
 const bodyParser = require('body-parser');
 const http = require('http');
@@ -12,7 +13,7 @@ app.get("/",(req, res) => {
 require("./app/routes/customer.routes.js")(app);
 require("./app/routes/token.routes.js")(app);
 
-app.listen(3000,()=>{
+app.listen(dbConfig.SERVER_PORT,()=>{
     console.log("project is running")
 });
 
