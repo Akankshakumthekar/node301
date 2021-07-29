@@ -11,8 +11,10 @@ const doc = {
         title: "customer services",
         description : "customer services API documentation "
     },
+
      host: dbConfig.SERVER_HOST + ":" + dbConfig.SERVER_PORT,
-     basepath: "/",
+
+     basePath: "/",
      schemes: ['http', 'https'],
      consumes: ['application/json'],
      produces: ['application/json'],
@@ -21,11 +23,12 @@ const doc = {
              "name": "Customer"
          }
      ],
-     securityDefinations: {
-         bearerAuth: {
+
+     securityDefinitions: {
+        bearerAuth: {
              type: "apiKey",
              name: "Authorization",
-             bearerFormat: "JWT",
+             bearerFormat:"JWT",
              in: "header"
          }
      },

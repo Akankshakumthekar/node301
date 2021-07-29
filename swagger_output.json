@@ -16,6 +16,14 @@
     "http",
     "https"
   ],
+  "securityDefinitions": {
+    "bearerAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "bearerFormat": "JWT",
+      "in": "header"
+    }
+  },
   "consumes": [
     "application/json"
   ],
@@ -288,15 +296,6 @@
     }
   },
   "definitions": {},
-  "basepath": "/",
-  "securityDefinations": {
-    "bearerAuth": {
-      "type": "apiKey",
-      "name": "Authorization",
-      "bearerFormat": "JWT",
-      "in": "header"
-    }
-  },
   "security": [
     {
       "bearerAuth": []
