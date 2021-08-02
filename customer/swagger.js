@@ -1,5 +1,5 @@
-const {getMaxListeners} = require("./app/services/db.js");
-const dbConfig = require('../node301/app/config/db.config.js');
+const {getMaxListeners} = require("../customer/app/services/db.js");
+const dbConfig = require('../customer/app/config/db.config.js');
 
 const swaggerAutogen = require('swagger-autogen')()
 
