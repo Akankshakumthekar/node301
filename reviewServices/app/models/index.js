@@ -6,6 +6,6 @@ mongoose.Promise = global.Promise;
 const db = {};
 db.mongoose = mongoose;
 db.url = dbConfig.url;
-db.review = require("./review.services.js")(mongoose);
+db.reviews = require("./review.model.js")(mongoose);
 
 module.exports = db;
