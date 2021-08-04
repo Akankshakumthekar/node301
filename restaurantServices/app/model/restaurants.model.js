@@ -3,13 +3,13 @@ module.exports = mongoose => {
       {
         name: String,
         phone: Number,
-        location: String,
+        location: Object,
         address: String,
-        cuisine: Number,
-        budget: String,
-        menus: String
-      }
-    );
+        cuisine: [String],
+        rating: Number
+        },
+        { timestamps: true }
+      );
   
     schema.method("toJSON", function() {
       const { __v, _id, ...object } = this.toObject();

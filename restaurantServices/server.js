@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require('body-parser');
 const cors= require("cors") ({ origin: true});
-const db = require("./app/models");
+const db = require("./app/model");
 const mongoose = require("mongoose");
 
 const app = express();
@@ -29,7 +29,7 @@ app.get("/", (req, res) =>{
 
 require("../restaurantServices/app/routes/restaurants.routes.js")(app);
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8081;
 app.listen(PORT,()=>{
     console.log("project is running")
     // logger.info(`server started and running`)

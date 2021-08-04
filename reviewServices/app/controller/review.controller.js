@@ -31,7 +31,7 @@ exports.create = (req, res) =>{
 
 exports.findAll = (req, res) => { 
     const restaurentId = req.query.restaurentId; 
-    Review.find(restaurentId)
+    Review.find({restaurentId})
       .then(data => {
         if (!data)
           res.status(404).send({ message: "Not found data with" ,  restaurentId});
