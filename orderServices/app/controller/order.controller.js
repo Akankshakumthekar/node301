@@ -12,10 +12,11 @@ exports.create = (req, res) =>{
         itemName: req.body.itemName,
         qty: req.body.qty,
         price: req.body.price,
+        amountToPay: req.body.qty * req.body.price,
         paid: req.body.paid
       }) ;
       order
-    .save(order)
+    .save(order) 
     .then(data =>{
         res.send(data)
     }).catch(err =>{
