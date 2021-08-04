@@ -59,23 +59,28 @@ exports.serchRestaurant = (req, res) => {
           .status(500)
           .send({ message: "Error retrieving restaurant with id=" + id });
       });
-  };
+};
 
-// exports.Search = (req, res) => {
-//   const id = req.body.id; 
-//   const location = req.body.location;
-//   const name = req.body.name;
-  
-//   Restaurant.findById(id)
-//     .then(data => {
-//       if (!data)
-//         res.status(404).send({ message: "Not found restaurant with id " + id });
-//       else res.send(data);
-//     })
-//     .catch(err => {
-//       res
-//         .status(500)
-//         .send({ message: "Error retrieving restaurant with id=" + id });
-//     });
-// }
+exports.update = (req, res) => {
+  if (!req.body) {
+    return res.status(400).send({
+      message: "Data to update can not be empty!"
+    });
+  }
 
+  const id = req.body.id;
+
+  Restaurant.findByIdAndUpdate(id, req.body)
+    .then(data => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot update restaurant with id=${id}. Maybe review was not found!`
+        });
+      } else res.send({ message: "restaurant was updated successfully." });
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Error updating restaurant with id=" + id
+      });
+    });
+};
