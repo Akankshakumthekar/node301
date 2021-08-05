@@ -21,7 +21,7 @@ exports.create = (req, res) =>{
     .then(data =>{
         res.send(data)
     }).catch(err =>{
-        res.status(500).send({
+        res.status(500).send({ 
             message:
             err.message || "error occure while creting review"
           
@@ -31,11 +31,22 @@ exports.create = (req, res) =>{
 
 exports.findAll = (req, res) => { 
     const restaurentId = req.query.restaurentId; 
+
     Review.find({restaurentId})
       .then(data => {
         if (!data)
           res.status(404).send({ message: "Not found data with" ,  restaurentId});
-        else res.send(data);
+        else{
+          const numReviews = data.length;
+          console.log(rating);
+
+          // let rating = 0;
+          console.log(numReviews);
+          for(var i = 0; i < data.length; i++){
+            console.log()
+          }
+           res.send(data);
+        }
       })
       .catch(err => {
         res
@@ -83,3 +94,21 @@ exports.findOne = (req, res) => {
         });
       });
   };
+
+
+  exports.findAggrigateRating = (req, res) => { 
+    Review.aggregate([{$group: {_id:"$restaurentId", avgRating: {$avg:"$rating"} } }])
+      .then(data => {
+        if (!data)
+          res.status(404).send({ message: "Not found data with" });
+        else{
+          console.log(data);
+           res.send(data);
+        }
+      })
+      .catch(err => { 
+        res
+          .status(500)
+          .send({ message: "Error while retrieving data with restarent Id" });
+      });
+};

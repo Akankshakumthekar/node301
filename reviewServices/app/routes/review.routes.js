@@ -5,5 +5,6 @@ module.exports = app =>{
     app.get("/review/find-all-review", review.findAll);
     app.get("/review/find-review-by-id", review.findOne);
     app.post("/review/update-review", review.update);
+    app.get("/review/aggregate-rating", review.findAggrigateRating);
 
 }
