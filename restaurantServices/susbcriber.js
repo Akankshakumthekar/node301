@@ -27,5 +27,5 @@ function consumer(conn) {
     .connect('amqps://hqiqjuyf:WwCXJpk3F2srpyZgj2arT7j4kpeQgJGv@puffin.rmq2.cloudamqp.com/hqiqjuyf', function(err, conn) {
       if (err != null) bail(err);
       consumer(conn);
-      publisher(conn);
+      // publisher(conn);
     });
