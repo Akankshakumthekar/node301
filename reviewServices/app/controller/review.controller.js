@@ -30,28 +30,20 @@ exports.create = (req, res) =>{
 }
 
 exports.findAll = (req, res) => { 
-    const restaurentId = req.query.restaurentId; 
 
-    Review.find({restaurentId})
+    Review.find()
       .then(data => {
         if (!data)
-          res.status(404).send({ message: "Not found data with" ,  restaurentId});
+          res.status(404).send({ message: "Not found data with" });
         else{
-          const numReviews = data.length;
-          console.log(rating);
-
-          // let rating = 0;
-          console.log(numReviews);
-          for(var i = 0; i < data.length; i++){
-            console.log()
-          }
+          console.log(data);
            res.send(data);
         }
       })
       .catch(err => {
         res
           .status(500)
-          .send({ message: "Error while retrieving data with restarent Id", restaurentId });
+          .send({ message: "Error while retrieving data with restarent Id" });
       });
 };
 
