@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const cors= require("cors") ({ origin: true});
 const db = require("./app/model");
 const mongoose = require("mongoose");
+const swaggerUi = require('swagger-ui-express');
+const swaggerFile = require('../customer/swagger_output.json');
 
 const app = express();
 
@@ -32,8 +34,10 @@ app.get("/", (req, res) =>{
 
 require("../orderServices/app/route/order.routes.js")(app);
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT,()=>{
     console.log("project is running")
     // logger.info(`server started and running`)
 });
+
+app.use('/order/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));

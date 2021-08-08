@@ -1,0 +1,237 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Order services",
+    "description": "Order services API documentation "
+  },
+  "host": "mongodb+srv://akanksha:akanksha@realmcluster.1oykb.mongodb.net/order?retryWrites=true&w=majority",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Order"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {
+    "bearerAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "bearerFormat": "JWT",
+      "in": "header"
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/order/crete-order": {
+      "post": {
+        "tags": [
+          "order"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "newOrder",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "customerId": {
+                  "type": "string",
+                  "example": "cust2"
+                },
+                "restaurentId": {
+                  "type": "string",
+                  "example": "rest2"
+                },
+                "itemName": {
+                  "type": "string",
+                  "example": "malvani fish"
+                },
+                "qty": {
+                  "type": "string",
+                  "example": "3"
+                },
+                "price": {
+                  "type": "number",
+                  "example": 100
+                },
+                "paid": {
+                  "type": "string",
+                  "example": "googlePay"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/order/update-order": {
+      "put": {
+        "tags": [
+          "order"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "newOrder",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "customerId": {
+                  "type": "string",
+                  "example": "cust2"
+                },
+                "restaurentId": {
+                  "type": "string",
+                  "example": "rest2"
+                },
+                "qty": {
+                  "type": "number",
+                  "example": 3
+                },
+                "price": {
+                  "type": "number",
+                  "example": 100
+                },
+                "amountToPay": {
+                  "type": "number",
+                  "example": 300
+                },
+                "paid": {
+                  "type": "string",
+                  "example": "googlePay"
+                },
+                "createdAt": {
+                  "type": "string",
+                  "example": "2021-08-04T09:53:18.361Z"
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "example": "2021-08-04T09:53:18.361Z"
+                },
+                "id": {
+                  "type": "string",
+                  "example": "610a638ed1b5311b5cd498eb"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/order/find-order-by-customerId": {
+      "get": {
+        "tags": [
+          "order"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "newOrder",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "customerId": {
+                  "type": "string",
+                  "example": "cust2"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/order/find-order-by-id": {
+      "get": {
+        "tags": [
+          "order"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "newOrder",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "610a638ed1b5311b5cd498eb"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {},
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}
