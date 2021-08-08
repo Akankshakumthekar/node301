@@ -32,7 +32,7 @@ app.get("/", (req, res) =>{
 
 require("../reviewServices/app/routes/review.routes.js")(app);
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT,()=>{
     console.log("project is running")
     // logger.info(`server started and running`)

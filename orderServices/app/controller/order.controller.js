@@ -33,7 +33,7 @@ exports.findAll = (req, res) => {
     Order.find({customerId})
       .then(data => {
         if (!data)
-          res.status(404).send({ message: "Not found data with" });
+          res.status(404).send({ message: "Not found data " });
         else res.send(data);
       })
       .catch(err => {
@@ -49,7 +49,7 @@ exports.findOne = (req, res) => {
     Order.findById(id)
       .then(data => {
         if (!data)
-          res.status(404).send({ message: "Not found oder with id " + id });
+          res.status(404).send({ message: "Not found oder"});
         else res.send(data);
       })
       .catch(err => {

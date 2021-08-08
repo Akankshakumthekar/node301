@@ -36,7 +36,6 @@ exports.findAll = (req, res) => {
         if (!data)
           res.status(404).send({ message: "Not found data with" });
         else{
-          console.log(data);
            res.send(data);
         }
       })

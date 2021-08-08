@@ -74,7 +74,7 @@ exports.update = (req, res) => {
     .then(data => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot update restaurant with id=${id}. Maybe review was not found!`
+          message: `Cannot update restaurant.`
         });
       } else res.send({ message: "restaurant was updated successfully." });
     })
