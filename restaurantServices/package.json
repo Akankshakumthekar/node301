@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha --timeout 20000",
-    "start": "node server.js"
+    "start": "node server.js",
+    "swagger-autogen": "node swagger.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +18,8 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mocha": "^9.0.3",
-    "mongoose": "^5.13.5"
+    "mongoose": "^5.13.5",
+    "swagger-autogen": "^2.11.2",
+    "swagger-ui-express": "^4.1.6"
   }
 }

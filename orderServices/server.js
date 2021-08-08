@@ -4,7 +4,7 @@ const cors= require("cors") ({ origin: true});
 const db = require("./app/model");
 const mongoose = require("mongoose");
 const swaggerUi = require('swagger-ui-express');
-const swaggerFile = require('../customer/swagger_output.json');
+const swaggerFile = require('../orderServices/swagger_output.json');
 
 const app = express();
 

@@ -4,6 +4,9 @@ const cors= require("cors") ({ origin: true});
 const db = require("./app/models");
 const mongoose = require("mongoose");
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerFile = require('../reviewServices/swagger_output.json')
+
 const app = express();
 
  db.mongoose
@@ -37,3 +40,5 @@ app.listen(PORT,()=>{
     console.log("project is running")
     // logger.info(`server started and running`)
 });
+
+app.use('/review/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));

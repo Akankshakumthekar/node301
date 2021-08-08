@@ -1,0 +1,221 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Order services",
+    "description": "Order services API documentation "
+  },
+  "host": "localhost:8000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Review"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {
+    "bearerAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "bearerFormat": "JWT",
+      "in": "header"
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/review/crete-review": {
+      "post": {
+        "tags": [
+          "review"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "newReview",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "custId": {
+                  "type": "string",
+                  "example": "12A"
+                },
+                "datetime": {
+                  "type": "string",
+                  "example": "2021-02-02"
+                },
+                "restaurentId": {
+                  "type": "string",
+                  "example": "PPPP"
+                },
+                "orderId": {
+                  "type": "string",
+                  "example": "123"
+                },
+                "rating": {
+                  "type": "string",
+                  "example": "5"
+                },
+                "review": {
+                  "type": "string",
+                  "example": "good"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/review/update-review": {
+      "put": {
+        "tags": [
+          "review"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "newReview",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "custId": {
+                  "type": "string",
+                  "example": "123456789"
+                },
+                "datetime": {
+                  "type": "string",
+                  "example": "2021-02-02T00:00:00.000Z"
+                },
+                "restaurentId": {
+                  "type": "string",
+                  "example": "PPPP"
+                },
+                "orderId": {
+                  "type": "string",
+                  "example": "123"
+                },
+                "rating": {
+                  "type": "number",
+                  "example": 3
+                },
+                "review": {
+                  "type": "string",
+                  "example": "good"
+                },
+                "createdAt": {
+                  "type": "string",
+                  "example": "2021-08-03T07:39:20.794Z"
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "example": "2021-08-03T07:39:20.794Z"
+                },
+                "id": {
+                  "type": "string",
+                  "example": "6108f2a804457a3f14d57c6e"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/review/find-all-review": {
+      "get": {
+        "tags": [
+          "review"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/review/find-review-by-id": {
+      "get": {
+        "tags": [
+          "review"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "newReview",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "610a638ed1b5311b5cd498eb"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {},
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

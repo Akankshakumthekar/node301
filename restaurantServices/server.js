@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const cors= require("cors") ({ origin: true});
 const db = require("./app/model");
 const mongoose = require("mongoose");
+const swaggerUi = require('swagger-ui-express');
+const swaggerFile = require('../restaurantServices/swagger_output.json');
 
 const app = express();
 
@@ -34,3 +36,5 @@ app.listen(PORT,()=>{
     console.log("project is running")
     // logger.info(`server started and running`)
 });
+
+app.use('/restaurant/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
