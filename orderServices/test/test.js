@@ -20,7 +20,7 @@ describe('/GET order', () => {
             paid: "googlePay",
             createdAt: "2021-08-04T09:53:18.361Z",
             updatedAt: "2021-08-04T09:53:18.361Z",
-            id: "610a638ed1b5311b5cd498eb"
+            id: "610a62bbcaad4d46acd2b7ce"
         };
         chai.request(app)
             .get('/order/find-order-by-customerId')
@@ -51,11 +51,11 @@ describe('/GET order ', () => {
             paid: "googlePay",
             createdAt: "2021-08-04T09:53:18.361Z",
             updatedAt: "2021-08-04T09:53:18.361Z",
-            id: "610a638ed1b5311b5cd498eb"
+            id: "610a62bbcaad4d46acd2b7ce"
         };
         chai.request(app)
             .get('/order/find-order-by-id')
-            .send({ id: "610a638ed1b5311b5cd498eb" })
+            .send({ id: "610a62bbcaad4d46acd2b7ce" })
             .end((err, res) => {
                 if (err) {
                     res.should.have.status(404);
@@ -83,7 +83,7 @@ describe('/POST order', () => {
             paid: "googlePay",
             createdAt: "2021-08-04T09:53:18.361Z",
             updatedAt: "2021-08-04T09:53:18.361Z",
-            id: "610a638ed1b5311b5cd498eb"
+            id: "610a62bbcaad4d46acd2b7ce"
         }
         chai.request(app)
             .post('/order/crete-order')
@@ -114,7 +114,7 @@ describe('/PUT order', () => {
             paid: "googlePay",
             createdAt: "2021-08-04T09:53:18.361Z",
             updatedAt: "2021-08-04T09:53:18.361Z",
-            id: "610a638ed1b5311b5cd498eb"
+            id: "610a62bbcaad4d46acd2b7ce"
         }
         chai.request(app)
             .put('/order/update-order')
@@ -127,7 +127,7 @@ describe('/PUT order', () => {
                 paid: "googlePay",
                 createdAt: "2021-08-04T09:53:18.361Z",
                 updatedAt: "2021-08-04T09:53:18.361Z",
-                id: "610a638ed1b5311b5cd498eb"
+                id: "610a62bbcaad4d46acd2b7ce"
             })
             .end((err, res) => {
                 res.should.have.status(200);
@@ -137,6 +137,33 @@ describe('/PUT order', () => {
             });
     });
 });
+
+describe('/DELETE order', () => {
+    it('it should DELETE a order ', (done) => {
+        let order = {
+            customerId: "cust3",
+            restaurentId: "rest3",
+            qty: 3,
+            price: 100,
+            amountToPay: 300,
+            paid: "googlePay",
+            createdAt: "2021-08-04T09:53:18.361Z",
+            updatedAt: "2021-08-04T09:53:18.361Z",
+            id: "610a5ecc444b061c8ca8205d"
+        }
+              chai.request(app)
+              .delete('/order/delete' )
+              .send({ id: "610a5ecc444b061c8ca8205d" })
+              .end((err, res) => {
+                  if(err) done(err);
+                    res.should.have.status(200);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('message').eql('Order was deleted successfully!');
+                done();
+              });
+        });
+    });
+
 
 
 

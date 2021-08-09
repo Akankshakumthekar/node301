@@ -5,7 +5,7 @@
     "title": "Order services",
     "description": "Order services API documentation "
   },
-  "host": "mongodb+srv://akanksha:akanksha@realmcluster.1oykb.mongodb.net/order?retryWrites=true&w=majority",
+  "host": "localhost:5000",
   "basePath": "/",
   "tags": [
     {

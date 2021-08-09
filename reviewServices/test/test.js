@@ -24,7 +24,7 @@ describe('/GET review', () => {
 describe('/GET review ', () => {
     it('it should GET review with id', (done) => {
         let review = {
-            id: "6108f2a804457a3f14d57c6e",
+            id: "6108ee154ead7737542077fd",
             custId: "12A",
             datetime: "2021-02-02",
             restaurentId: "PPPP",
@@ -34,7 +34,7 @@ describe('/GET review ', () => {
         };
         chai.request(app)
             .get('/review/find-review-by-id')
-            .send({ id: "6108f2a804457a3f14d57c6e" })
+            .send({ id: "6108ee154ead7737542077fd" })
             .end((err, res) => {
                 if (err) {
                     res.should.have.status(404);
@@ -55,7 +55,7 @@ describe('/GET review ', () => {
 describe('/POST review', () => {
     it('it should not POST a review', (done) => {
         let review = {
-            id: "6108f2a804457a3f14d57c6e",
+            id: "6108ee154ead7737542077fd",
             custId: "12A",
             datetime: "2021-02-02",
             restaurentId: "PPPP",
@@ -84,7 +84,7 @@ describe('/POST review', () => {
 describe('/PUT review', () => {
     it('it should UPDATE a review given the id', (done) => {
         let review = {
-            id: "6108f2a804457a3f14d57c6e",
+            id: "6108ee154ead7737542077fd",
             custId: "cust1234",
             datetime: "2021-02-02",
             restaurentId: "resto123445",
@@ -95,7 +95,7 @@ describe('/PUT review', () => {
         chai.request(app)
             .put('/review/update-review')
             .send({
-                id: "6108f2a804457a3f14d57c6e",
+                id: "6108ee154ead7737542077fd",
                 custId: "12A",
                 datetime: "2021-02-02",
                 restaurentId: "PPPP",
@@ -112,11 +112,20 @@ describe('/PUT review', () => {
     });
 });
 
-
-
-
-
-
+describe('/DELETE review', () => {
+    it('it should DELETE a review ', (done) => {        
+              chai.request(app)
+              .delete('/review/delete' )
+              .send({ id: "6108f0a862b37b397cf1fa0c" })
+              .end((err, res) => {
+                  if(err) done(err);
+                    res.should.have.status(200);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('message').eql('Review was deleted successfully!');
+                done();
+              });
+        });
+    });
 
 
 

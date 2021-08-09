@@ -24,7 +24,7 @@ describe('/GET restaurant', () => {
 describe('/POST restaurant', () => {
     it('it should not POST a restaurant', (done) => {
         let restaurant = {
-            id: "6108f2a804457a3f14d57c6e",
+            id: "610a488001608f1d00f27cff",
             name: "new- wood",
             phone: 7889897889,
             location: {
@@ -67,7 +67,7 @@ describe('/PUT restaurant', () => {
         chai.request(app)
             .put('/restaurant/update-restaurant')
             .send({
-                    id: "6108f2a804457a3f14d57c6e",
+                    id: "610a488001608f1d00f27cff",
                     name: "new-wood",
                     phone: 7800897889,
                     location: {
@@ -102,6 +102,22 @@ describe('/PUT restaurant', () => {
             });
     });
 });
+
+describe('/DELETE restaurant', () => {
+    it('it should DELETE a restaurant ', (done) => {        
+              chai.request(app)
+              .delete('/restaurant/delete' )
+              .send({ id: "610a48192aec8a3258e37fdd" })
+              .end((err, res) => {
+                  if(err) done(err);
+                    res.should.have.status(200);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('message').eql('Restaurant was deleted successfully!');
+                done();
+              });
+        });
+    });
+
 
 
 

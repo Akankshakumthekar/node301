@@ -103,3 +103,25 @@ exports.findOne = (req, res) => {
           .send({ message: "Error while retrieving data with restarent Id" });
       });
 };
+
+exports.delete = (req, res) => {
+  const id = req.body.id;
+
+  Review.findByIdAndRemove(id)
+    .then(data => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot delete Review.`
+        });
+      } else {
+        res.send({
+          message: "Review was deleted successfully!"
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Could not delete Review" 
+      });
+    });
+};

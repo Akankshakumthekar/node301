@@ -6,5 +6,6 @@ module.exports = app =>{
     app.get("/review/find-review-by-id", review.findOne);
     app.put("/review/update-review", review.update);
     app.get("/review/aggregate-rating", review.findAggrigateRating);
+    app.delete("/review/delete", review.delete);
 
 }

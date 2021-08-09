@@ -83,3 +83,25 @@ exports.update = (req, res) => {
       });
     });
 };
+
+exports.delete = (req, res) => {
+  const id = req.body.id;
+
+  Order.findByIdAndRemove(id)
+    .then(data => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot delete Order.`
+        });
+      } else {
+        res.send({
+          message: "Order was deleted successfully!"
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Could not delete Order" 
+      });
+    });
+};
