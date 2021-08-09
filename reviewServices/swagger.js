@@ -10,8 +10,8 @@ const host = "localhost";
 const doc = {
     info: {
         version: "1.0.0",
-        title: "Order services",
-        description : "Order services API documentation "
+        title:  "review services",
+        description : "review services API documentation "
     },
     
     host: host + ":" + port,

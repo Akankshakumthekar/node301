@@ -52,12 +52,36 @@ module.exports = function (app) {
 
     app.get('/order/find-order-by-customerId', (req, res) =>{
         // #swagger.tags= ['order']
+                /* #swagger.parameters['customerId'] = {description: "enter customerId"} */
+        const newOrder = req.body
+        if(false)
+        return res.status(404).send(false)
+        else {
+            return res.status(200).send(data)
+        }
+        return res.status(500)
+    })
+
+    // app.get('/order/find-order-by-id', (req, res) =>{
+    //      // #swagger.tags= ['order']
+    //     /* #swagger.parameters['orderId'] = {description: "enter orderID"} */
+    //     const newCustomer = req.body
+    //     if(false)
+    //     return res.status(404).send(false)
+    //     else {
+    //         return res.status(200).send(data)
+    //     }
+    //     return res.status(500)
+    // })
+
+    app.delete('/order/delete', (req, res) =>{
+        // #swagger.tags= ['order']
         /* #swagger.parameters[newOrder] = {
             in: 'body',
             required: true,
             type: 'object',
             schema: {
-                    "customerId": "cust2"
+                    "id": "6108f2a804457a3f14d57c6e"
             }
         } */
         const newOrder = req.body
@@ -68,25 +92,5 @@ module.exports = function (app) {
         }
         return res.status(500)
     })
-
-    app.get('/order/find-order-by-id', (req, res) =>{
-        // #swagger.tags= ['order']
-        /* #swagger.parameters[newOrder] = {
-            in: 'body',
-            required: true,
-            type: 'object',
-            schema: {
-                "id": "610a638ed1b5311b5cd498eb"
-            }
-        } */
-        const newCustomer = req.body
-        if(false)
-        return res.status(404).send(false)
-        else {
-            return res.status(200).send(data)
-        }
-        return res.status(500)
-    })
-
 
 }

@@ -46,18 +46,18 @@ exports.serchRestaurant = (req, res) => {
     const location = req.body.location;
     const name = req.body.name;
     const rating = req.body.rating;
-    
-    Restaurant.find({id} || {location} || {name} || {rating})
+    const condition =  ({id} || {location} || {name} || {rating})
+    Restaurant.find(condition)
       .then(data => {
         if (!data)
-          res.status(404).send({ message: "Not found restaurant with id " + id });
+          res.status(404).send({ message: "Not found restaurant"  });
         else res.send(data);
       })
       .catch(err => {
         console.log(err);
         res
           .status(500)
-          .send({ message: "Error retrieving restaurant with id=" + id });
+          .send({ message: "Error retrieving restaurant "});
       });
 };
 

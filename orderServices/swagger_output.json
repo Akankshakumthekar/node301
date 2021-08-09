@@ -9,7 +9,7 @@
   "basePath": "/",
   "tags": [
     {
-      "name": "Order"
+      "name": "order"
     }
   ],
   "schemes": [
@@ -163,19 +163,10 @@
         "description": "",
         "parameters": [
           {
-            "name": "newOrder",
-            "in": "body",
-            "required": true,
-            "type": "object",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "customerId": {
-                  "type": "string",
-                  "example": "cust2"
-                }
-              }
-            }
+            "name": "customerId",
+            "description": "enter customerId",
+            "in": "query",
+            "type": "string"
           }
         ],
         "responses": {
@@ -199,6 +190,33 @@
         "description": "",
         "parameters": [
           {
+            "name": "orderId",
+            "description": "enter orderID",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/order/delete": {
+      "delete": {
+        "tags": [
+          "order"
+        ],
+        "description": "",
+        "parameters": [
+          {
             "name": "newOrder",
             "in": "body",
             "required": true,
@@ -208,7 +226,7 @@
               "properties": {
                 "id": {
                   "type": "string",
-                  "example": "610a638ed1b5311b5cd498eb"
+                  "example": "6108f2a804457a3f14d57c6e"
                 }
               }
             }

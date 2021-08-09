@@ -5,7 +5,7 @@ const swaggerAutogen = require('swagger-autogen')()
 
 const outputFile = './swagger_output.json'
 const endpointsFiles = ['./endpoints.js']
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8081;
 const host = "localhost";
 const doc = {
     info: {
@@ -25,7 +25,7 @@ const doc = {
      produces: ['application/json'],
      tags: [
          {
-             "name": "Restaurant"
+             "name": "restaurant"
          }
      ],
 

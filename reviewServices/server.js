@@ -35,10 +35,10 @@ app.get("/", (req, res) =>{
 
 require("../reviewServices/app/routes/review.routes.js")(app);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT,()=>{
     console.log("project is running")
     // logger.info(`server started and running`)
 });
 
-app.use('/review/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));

@@ -29,8 +29,8 @@ exports.create = (req, res) =>{
 }
 
 exports.findAll = (req, res) => { 
-    const customerId = req.body.customerId;
-    Order.find({customerId})
+    const customerId = req.params.customerId;
+    Order.find(customerId)
       .then(data => {
         if (!data)
           res.status(404).send({ message: "Not found data " });
@@ -44,7 +44,7 @@ exports.findAll = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-    const id = req.body.id;
+    const id = req.params.id;
     
     Order.findById(id)
       .then(data => {

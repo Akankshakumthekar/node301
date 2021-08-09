@@ -47,7 +47,7 @@ exports.findAll = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-    const id = req.body.id;
+    const id = req.params.id;
   
     Review.findById(id)
       .then(data => {

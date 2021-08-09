@@ -25,7 +25,7 @@ const doc = {
      produces: ['application/json'],
      tags: [
          {
-             "name": "Order"
+             "name": "order"
          }
      ],
 

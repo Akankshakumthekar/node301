@@ -5,11 +5,11 @@
     "title": "Restaurant services",
     "description": "Restaurant Services API documentation "
   },
-  "host": "localhost:3000",
+  "host": "localhost:8081",
   "basePath": "/",
   "tags": [
     {
-      "name": "Restaurant"
+      "name": "restaurant"
     }
   ],
   "schemes": [
@@ -46,29 +46,63 @@
             "schema": {
               "type": "object",
               "properties": {
-                "customerId": {
+                "name": {
                   "type": "string",
-                  "example": "cust2"
+                  "example": "new- wood"
                 },
-                "restaurentId": {
-                  "type": "string",
-                  "example": "rest2"
-                },
-                "itemName": {
-                  "type": "string",
-                  "example": "malvani fish"
-                },
-                "qty": {
-                  "type": "string",
-                  "example": "3"
-                },
-                "price": {
+                "phone": {
                   "type": "number",
-                  "example": 100
+                  "example": 7889897889
                 },
-                "paid": {
+                "location": {
+                  "type": "object",
+                  "properties": {
+                    "lat": {
+                      "type": "string",
+                      "example": "224342"
+                    },
+                    "long": {
+                      "type": "string",
+                      "example": "432323"
+                    }
+                  }
+                },
+                "address": {
                   "type": "string",
-                  "example": "googlePay"
+                  "example": " pune"
+                },
+                "cuisine": {
+                  "type": "array",
+                  "example": [
+                    "veg"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "menu": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "example": "111"
+                      },
+                      "name": {
+                        "type": "string",
+                        "example": "malvani fish"
+                      },
+                      "price": {
+                        "type": "string",
+                        "example": "500"
+                      }
+                    }
+                  }
+                },
+                "rating": {
+                  "type": "number",
+                  "example": 4
                 }
               }
             }
@@ -102,41 +136,55 @@
             "schema": {
               "type": "object",
               "properties": {
-                "customerId": {
+                "cuisine": {
+                  "type": "array",
+                  "example": [
+                    "veg"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "name": {
                   "type": "string",
-                  "example": "cust2"
+                  "example": "new- wood"
                 },
-                "restaurentId": {
+                "phone": {
+                  "type": "number",
+                  "example": 7889897889
+                },
+                "location": {
+                  "type": "object",
+                  "properties": {
+                    "lat": {
+                      "type": "string",
+                      "example": "224342"
+                    },
+                    "long": {
+                      "type": "string",
+                      "example": "432323"
+                    }
+                  }
+                },
+                "address": {
                   "type": "string",
-                  "example": "rest2"
+                  "example": " pune"
                 },
-                "qty": {
+                "rating": {
                   "type": "number",
-                  "example": 3
-                },
-                "price": {
-                  "type": "number",
-                  "example": 100
-                },
-                "amountToPay": {
-                  "type": "number",
-                  "example": 300
-                },
-                "paid": {
-                  "type": "string",
-                  "example": "googlePay"
+                  "example": 4
                 },
                 "createdAt": {
                   "type": "string",
-                  "example": "2021-08-04T09:53:18.361Z"
+                  "example": "2021-08-04T07:58:38.903Z"
                 },
                 "updatedAt": {
                   "type": "string",
-                  "example": "2021-08-04T09:53:18.361Z"
+                  "example": "2021-08-04T07:58:38.903Z"
                 },
                 "id": {
                   "type": "string",
-                  "example": "610a638ed1b5311b5cd498eb"
+                  "example": "610a48ae5bb80d1128cd9aed"
                 }
               }
             }
@@ -176,7 +224,7 @@
       }
     },
     "/restaurant/search": {
-      "get": {
+      "post": {
         "tags": [
           "restaurant"
         ],
@@ -193,6 +241,42 @@
                 "id": {
                   "type": "string",
                   "example": "610a638ed1b5311b5cd498eb"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/restaurant/delete": {
+      "delete": {
+        "tags": [
+          "restaurant"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "newRestaurant",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "6108f2a804457a3f14d57c6e"
                 }
               }
             }

@@ -78,7 +78,7 @@ module.exports = function (app) {
         return res.status(500)
     })
 
-    app.get('/restaurant/search', (req, res) =>{
+    app.post('/restaurant/search', (req, res) =>{
         // #swagger.tags= ['restaurant']
         /* #swagger.parameters[newRestaurant] = {
             in: 'body',
@@ -86,6 +86,25 @@ module.exports = function (app) {
             type: 'object',
             schema: {
                 "id": "610a638ed1b5311b5cd498eb"
+            }
+        } */
+        const newRestaurant = req.body
+        if(false)
+        return res.status(404).send(false)
+        else {
+            return res.status(200).send(data)
+        }
+        return res.status(500)
+    })
+
+    app.delete('/restaurant/delete', (req, res) =>{
+        // #swagger.tags= ['restaurant']
+        /* #swagger.parameters[newRestaurant] = {
+            in: 'body',
+            required: true,
+            type: 'object',
+            schema: {
+                    "id": "6108f2a804457a3f14d57c6e"
             }
         } */
         const newRestaurant = req.body
