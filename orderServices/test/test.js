@@ -11,20 +11,9 @@ chai.use(chaiHttp);
 
 describe('/GET order', () => {
     it('it should GET all the order by customerId', (done) => {
-        let order = {
-            customerId: "cust2",
-            restaurentId: "rest2",
-            qty: 3,
-            price: 100,
-            amountToPay: 300,
-            paid: "googlePay",
-            createdAt: "2021-08-04T09:53:18.361Z",
-            updatedAt: "2021-08-04T09:53:18.361Z",
-            id: "610a62bbcaad4d46acd2b7ce"
-        };
         chai.request(app)
-            .get('/order/find-order-by-customerId')
-            .send({  customerId: "cust2" })
+            .post('/order/find-order-by-customerId')
+            .send({  "customerId": "cust2" })
             .end((err, res) => {
                 if (err) {
                     res.should.have.status(404);
@@ -40,50 +29,37 @@ describe('/GET order', () => {
     });
 });
 
-// describe('/GET order ', () => {
-//     it('it should GET order with id', (done) => {
-//         let order = {
-//             customerId: "cust2",
-//             restaurentId: "rest2",
-//             qty: 3,
-//             price: 100,
-//             amountToPay: 300,
-//             paid: "googlePay",
-//             createdAt: "2021-08-04T09:53:18.361Z",
-//             updatedAt: "2021-08-04T09:53:18.361Z",
-//             id: "610a62bbcaad4d46acd2b7ce"
-//         };
-//         chai.request(app)
-//             .get('/order/find-order-by-id' + {'id' :"610a62bbcaad4d46acd2b7ce"})
-//             // .send(id: "610a62bbcaad4d46acd2b7ce" )
-//             .end((err, res) => {
-//                 if (err) {
-//                     res.should.have.status(404);
-//                     res.body.should.be.a('object');
-//                     res.body.should.have.property('message');
-//                     res.body.should.have.property('message').eql('Not found oder');
-//                     done(err);
-//                 } else {
-//                     res.should.have.status(200);
-//                     res.body.should.be.a('object');
-//                 }
-//                 done();
-//             });
-//     });
-// });
+describe('/GET order ', () => {
+    it('it should GET order with id', (done) => {
+        chai.request(app)
+            .post('/order/find-order-by-id')
+            .send({id: "6110d8b0f3b0421874f53f2e"} )
+            .end((err, res) => {
+                if (err) {
+                    res.should.have.status(404);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('message');
+                    res.body.should.have.property('message').eql('Not found oder');
+                    done(err);
+                } else {
+                    res.should.have.status(200);
+                    res.body.should.be.a('object');
+                }
+                done();
+            });
+    });
+});
 
 describe('/POST order', () => {
     it('it should not POST a order', (done) => {
         let order = {
             customerId: "cust2",
             restaurentId: "rest2",
+            item: "pizza",
             qty: 3,
             price: 100,
             amountToPay: 300,
-            paid: "googlePay",
-            createdAt: "2021-08-04T09:53:18.361Z",
-            updatedAt: "2021-08-04T09:53:18.361Z",
-            id: "610a5e9c444b061c8ca8205a"
+            paid: "googlePay"
         }
         chai.request(app)
             .post('/order/crete-order')
@@ -105,29 +81,19 @@ describe('/POST order', () => {
 
 describe('/PUT order', () => {
     it('it should UPDATE a order', (done) => {
-        let order = {
-            customerId: "cust2",
-            restaurentId: "rest2",
-            qty: 3,
-            price: 100,
-            amountToPay: 300,
-            paid: "googlePay",
-            createdAt: "2021-08-04T09:53:18.361Z",
-            updatedAt: "2021-08-04T09:53:18.361Z",
-            id: "610a5e9c444b061c8ca8205a"
-        }
         chai.request(app)
             .put('/order/update-order')
             .send({
-                customerId: "cust2",
-                restaurentId: "rest2",
+                customerId: "cust3",
+                restaurentId: "rest3",
+                item: "pizza",
                 qty: 3,
                 price: 100,
                 amountToPay: 300,
                 paid: "googlePay",
                 createdAt: "2021-08-04T09:53:18.361Z",
                 updatedAt: "2021-08-04T09:53:18.361Z",
-                id: "610a5e9c444b061c8ca8205a"
+                id: "6110d8b0f3b0421874f53f2e"
             })
             .end((err, res) => {
                 res.should.have.status(200);
@@ -140,20 +106,9 @@ describe('/PUT order', () => {
 
 describe('/DELETE order', () => {
     it('it should DELETE a order ', (done) => {
-        let order = {
-            customerId: "cust3",
-            restaurentId: "rest3",
-            qty: 3,
-            price: 100,
-            amountToPay: 300,
-            paid: "googlePay",
-            createdAt: "2021-08-04T09:53:18.361Z",
-            updatedAt: "2021-08-04T09:53:18.361Z",
-            id: "610a5e9c444b061c8ca8205a"
-        }
               chai.request(app)
               .delete('/order/delete' )
-              .send({ id: "610a5e9c444b061c8ca8205a" })
+              .send({ id: "611252e7b980f229984e1669" })
               .end((err, res) => {
                   if(err) done(err);
                     res.should.have.status(200);
