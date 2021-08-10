@@ -22,7 +22,7 @@ Customer.createCustomer =  ( name, gender, city, phone, email, address, password
     })
     promise.then( (results) =>{
       results;
-      sql.query("INSERT IGNORE INTO customers SET ?", [{  name: name, gender: gender, city: city, phone: phone, email: email, address: address, password: results}], (err, res) => {
+      sql.query("INSERT IGNORE INTO customer SET ?", [{  name: name, gender: gender, city: city, phone: phone, email: email, address: address, password: results}], (err, res) => {
         if (err) {
           result(err, null);
           return;
@@ -50,7 +50,7 @@ Customer.createCustomer =  ( name, gender, city, phone, email, address, password
 };
 
 Customer.updateCustomer = (name, gender, city, phone, email, address, id, result) => {
-  sql.query("UPDATE customers SET name = ?, gender = ?, city= ?, phone = ?, email = ?, address = ? where id = ? ", [name, gender, city, phone, email, address, id], (err, res) =>{
+  sql.query("UPDATE customer SET name = ?, gender = ?, city= ?, phone = ?, email = ?, address = ? where id = ? ", [name, gender, city, phone, email, address, id], (err, res) =>{
     if(err) {
       console.log("error", err)
       result(err, null);
@@ -65,7 +65,7 @@ Customer.updateCustomer = (name, gender, city, phone, email, address, id, result
 };
 
 Customer.findCustomer = (customerId, result) =>{
-  sql.query("select * from customers where id = ? ", [customerId], (err, res)=> {
+  sql.query("select * from customer where id = ? ", [customerId], (err, res)=> {
     if(err){
       result(err, null);
       return;
@@ -81,7 +81,7 @@ Customer.findCustomer = (customerId, result) =>{
 }
 
 Customer. removeCustomer = (customerId, result) =>{
-  sql.query("DELETE from customers where id = ?", [customerId], (err, res) => {
+  sql.query("DELETE from customer where id = ?", [customerId], (err, res) => {
     if(err){
       result(null,err);
       return;
@@ -95,7 +95,7 @@ Customer. removeCustomer = (customerId, result) =>{
 }
 
 Customer.findEmailandPassword = (email, password, result)=>{
-  sql.query("SELECT password from customers where email = ?", [email], (err, resp)=>{
+  sql.query("SELECT password from customer where email = ?", [email], (err, resp)=>{
     const promise = new Promise((resolve, reject) =>{
       const dbpassword = JSON.stringify(resp[0,0]);
       const obj = JSON.parse(dbpassword);
@@ -118,7 +118,7 @@ Customer.findEmailandPassword = (email, password, result)=>{
         const obj = JSON.parse(dbpassword);
         const values = Object.values(obj);
         const pass = values[0];
-        sql.query("SELECT * from customers where email = ? AND password = ?", [email, pass], (err, res) =>{
+        sql.query("SELECT * from customer where email = ? AND password = ?", [email, pass], (err, res) =>{
          if(err){
            result(err, null)
            return;

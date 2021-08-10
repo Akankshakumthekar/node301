@@ -48,7 +48,7 @@ describe("Account", () => {
 describe('/GET customer ', () => {
     it('it should GET customer with id', (done) => {
         chai.request(app) 
-            .get('/customer/find-customer?customerId=2')
+            .get('/customer/find-customer?customerId=1')
             .set({Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyZGF0YSI6IntcIklkXCI6MSxcIm5hbWVcIjpcImFkbWluXCIsXCJlbWFpbFwiOlwiYWRtaW5AZ21haWwuY29tXCIsXCJwYXNzd29yZFwiOlwiJDJhJDA4JFhSbVIuTzhJdWQxdnhyQjhMUGEyc3VnS1hZSy91VDJwMmh6NXV4NXlncUV6blVGbjU1eEQ2XCIsXCJyb2xlXCI6XCJhZG1pblwifSIsImlhdCI6MTYyNzU0NTIyMCwiZXhwIjoxNjI3NjMxNjIwfQ.OnnXeQmbDK0mfMXrpsktxKPQzEjzM8t6jgTc193JgeA'})
             // .send({ customerId: '2' })
             .end((err, res) => {
@@ -106,10 +106,10 @@ describe('/PUT customer', () => {
                 name: "test",
                 gender: "F",
                 city: "pune",
-                phone: 6787655678, 
+                phone: 6787655677, 
                 email: "test@gmail.com",
                 address: "pune, chinchwad",
-                id: "1"
+                id: "7"
             })
             .end((err, res) => {
                 res.should.have.status(200);
@@ -124,7 +124,7 @@ describe('/DELETE customer', () => {
               chai.request(app)
               .delete('/customer/delete-cutomer')
               .set({Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyZGF0YSI6IntcIklkXCI6MSxcIm5hbWVcIjpcImFkbWluXCIsXCJlbWFpbFwiOlwiYWRtaW5AZ21haWwuY29tXCIsXCJwYXNzd29yZFwiOlwiJDJhJDA4JFhSbVIuTzhJdWQxdnhyQjhMUGEyc3VnS1hZSy91VDJwMmh6NXV4NXlncUV6blVGbjU1eEQ2XCIsXCJyb2xlXCI6XCJhZG1pblwifSIsImlhdCI6MTYyNzU0NTIyMCwiZXhwIjoxNjI3NjMxNjIwfQ.OnnXeQmbDK0mfMXrpsktxKPQzEjzM8t6jgTc193JgeA'})
-              .send({customerId: 2})
+              .send({customerId : 14})
               .end((err, res) => {
                   if(err) done(err);
                     res.should.have.status(200);
@@ -141,7 +141,10 @@ describe('/POST login', () => {
               chai.request(app)
               .post('/customer/login' )
               .set({Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyZGF0YSI6IntcIklkXCI6MSxcIm5hbWVcIjpcImFkbWluXCIsXCJlbWFpbFwiOlwiYWRtaW5AZ21haWwuY29tXCIsXCJwYXNzd29yZFwiOlwiJDJhJDA4JFhSbVIuTzhJdWQxdnhyQjhMUGEyc3VnS1hZSy91VDJwMmh6NXV4NXlncUV6blVGbjU1eEQ2XCIsXCJyb2xlXCI6XCJhZG1pblwifSIsImlhdCI6MTYyNzU0NTIyMCwiZXhwIjoxNjI3NjMxNjIwfQ.OnnXeQmbDK0mfMXrpsktxKPQzEjzM8t6jgTc193JgeA'})
-              .send({  email: "john12@gmail.com", password: "Test@31" })
+              .send({   
+                    email: "john12@gmail.com",
+                    password: "Test@31"
+             })
               .end((err, res) => {
                   if(err) done(err);
                     res.should.have.status(200);
