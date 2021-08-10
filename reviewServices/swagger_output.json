@@ -183,10 +183,19 @@
         "description": "",
         "parameters": [
           {
-            "name": "id",
-            "description": "enter orderID",
-            "in": "query",
-            "type": "string"
+            "name": "newReview",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "6108f2a804457a3f14d57c6e"
+                }
+              }
+            }
           }
         ],
         "responses": {

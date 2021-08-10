@@ -8,6 +8,15 @@ let chaiHttp = require('chai-http');
 let should = chai.should();
 
 chai.use(chaiHttp);
+
+// describe('review', () => {
+//     beforeEach((done) => {
+//         Review.remove({}, (err) => {
+//            done();
+//         });
+//     });
+// });
+
 describe('/GET review', () => {
     it('it should GET all the review', (done) => {
         chai.request(app)
@@ -23,18 +32,9 @@ describe('/GET review', () => {
 
 describe('/GET review ', () => {
     it('it should GET review with id', (done) => {
-        let review = {
-            id: "6108ee154ead7737542077fd",
-            custId: "12A",
-            datetime: "2021-02-02",
-            restaurentId: "PPPP",
-            orderId: "123",
-            rating: "5",
-            review: "good"
-        };
         chai.request(app)
-            .get('/review/find-review-by-id')
-            .send({ id: "6108ee154ead7737542077fd" })
+            .post('/review/find-review-by-id')
+            .send({ id: "611224719ba0af39ac3addd3" })
             .end((err, res) => {
                 if (err) {
                     res.should.have.status(404);
@@ -55,7 +55,6 @@ describe('/GET review ', () => {
 describe('/POST review', () => {
     it('it should not POST a review', (done) => {
         let review = {
-            id: "6108ee154ead7737542077fd",
             custId: "12A",
             datetime: "2021-02-02",
             restaurentId: "PPPP",
@@ -83,19 +82,10 @@ describe('/POST review', () => {
 
 describe('/PUT review', () => {
     it('it should UPDATE a review given the id', (done) => {
-        let review = {
-            id: "6108ee154ead7737542077fd",
-            custId: "cust1234",
-            datetime: "2021-02-02",
-            restaurentId: "resto123445",
-            orderId: "123",
-            rating: "5",
-            review: "good"
-        }
         chai.request(app)
             .put('/review/update-review')
             .send({
-                id: "6108ee154ead7737542077fd",
+                id: "611224719ba0af39ac3addd3",
                 custId: "12A",
                 datetime: "2021-02-02",
                 restaurentId: "PPPP",
@@ -116,7 +106,7 @@ describe('/DELETE review', () => {
     it('it should DELETE a review ', (done) => {        
               chai.request(app)
               .delete('/review/delete' )
-              .send({ id: "6108f0a862b37b397cf1fa0c" })
+              .send({ id: "611225703488cd24e457b0ee" })
               .end((err, res) => {
                   if(err) done(err);
                     res.should.have.status(200);
@@ -125,13 +115,4 @@ describe('/DELETE review', () => {
                 done();
               });
         });
-    });
-
-
-
-
-
-
-
-
-
+});

@@ -60,17 +60,24 @@ module.exports = function (app) {
         return res.status(500)
     })
 
-    // app.get('/review/find-review-by-id', (req, res) =>{
-    //      // #swagger.tags= ['Review']
-    //     /* #swagger.parameters['id'] = {description: "enter orderID"} */
-    //     const newReview = req.body
-    //     if(false)
-    //     return res.status(404).send(false)
-    //     else {
-    //         return res.status(200).send(data)
-    //     }
-    //     return res.status(500)
-    // })
+    app.get('/review/find-review-by-id', (req, res) =>{
+         // #swagger.tags= ['Review']
+         /* #swagger.parameters[newReview] = {
+            in: 'body',
+            required: true,
+            type: 'object',
+            schema: {
+                    "id": "6108f2a804457a3f14d57c6e"
+            }
+        } */
+        const newReview = req.body
+        if(false)
+        return res.status(404).send(false)
+        else {
+            return res.status(200).send(data)
+        }
+        return res.status(500)
+    })
 
     app.delete('/review/delete', (req, res) =>{
         // #swagger.tags= ['Review']

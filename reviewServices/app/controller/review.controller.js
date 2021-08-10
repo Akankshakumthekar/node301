@@ -47,9 +47,8 @@ exports.findAll = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-    const id = req.params.id;
-  
-    Review.findById(id)
+    const id =  req.body.id;
+    Review.findById(id) 
       .then(data => {
         if (!data)
           res.status(404).send({ message: "Not found review with id " + id });
@@ -85,7 +84,6 @@ exports.findOne = (req, res) => {
         });
       });
   };
-
 
   exports.findAggrigateRating = (req, res) => { 
     Review.aggregate([{$group: {_id:"$restaurentId", avgRating: {$avg:"$rating"} } }])
