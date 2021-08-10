@@ -1,32 +1,58 @@
-queue_name = "rating_review_update";
 
-function bail(err) {
-    console.error(err);
-    process.exit(1);
-  }
+'use strict';
+var amqp = require('amqplib/callback_api');
+const CONN_URL = 'amqps://atmydsaq:oDNdcj1Jr5N4E6gwnZbrCxkrIEQBtbZF@beaver.rmq.cloudamqp.com/atmydsaq';
 
-  function publisher(conn) {
-      setInterval( () =>{ 
-          const rating_update = {
-              restId: Math.ceil(Math.random() * 1000000),
-              rating: Math.ceil(Math.random() * 5),
-              rating_count: Math.ceil(Math.random() * 10000),
-          }
-          console.log("publishing", rating_update);
+let ch = null;
+module.exports = {
 
-          conn.createChannel(on_open);
-          function on_open(err, ch) {
-            if (err != null) bail(err);
-            ch.assertQueue(queue_name);
-            ch.sendToQueue(queue_name, Buffer.from(JSON.stringify(rating_update)));
-          }
-      },10000)
+   publishToQueue: async (queueName, data) => {
+      amqp.connect(CONN_URL, function (err, conn) {
+         conn.createChannel(function (err, channel) {
+            ch = channel;
+            ch.sendToQueue(queueName, new Buffer(data));
+         });
+      });
+   },
+   publishUpdateToQueue: async (queueName,data) =>{
+      amqp.connect(CONN_URL, function (err, conn) {
+         conn.createChannel(function (err, channel) {
+            ch = channel;
+            ch.sendToQueue(queueName, new Buffer(data));
+         });
+      });
+   }
+}
 
-  }
+// queue_name = "rating_review_update";
 
-  require('amqplib/callback_api')
-  .connect('amqps://hqiqjuyf:WwCXJpk3F2srpyZgj2arT7j4kpeQgJGv@puffin.rmq2.cloudamqp.com/hqiqjuyf', function(err, conn) {
-    if (err != null) bail(err);
-    // consumer(conn);
-    publisher(conn);
-  });
+// function bail(err) {
+//     console.error(err);
+//     process.exit(1);
+//   }
+
+//   function publisher(conn) {
+//       setInterval( () =>{ 
+//           const rating_update = {
+//               restId: Math.ceil(Math.random() * 1000000),
+//               rating: Math.ceil(Math.random() * 5),
+//               rating_count: Math.ceil(Math.random() * 10000),
+//           }
+//           console.log("publishing", rating_update);
+
+//           conn.createChannel(on_open);
+//           function on_open(err, ch) {
+//             if (err != null) bail(err);
+//             ch.assertQueue(queue_name);
+//             ch.sendToQueue(queue_name, Buffer.from(JSON.stringify(rating_update)));
+//           }
+//       },10000)
+
+//   }
+
+//   require('amqplib/callback_api')
+//   .connect('amqps://hqiqjuyf:WwCXJpk3F2srpyZgj2arT7j4kpeQgJGv@puffin.rmq2.cloudamqp.com/hqiqjuyf', function(err, conn) {
+//     if (err != null) bail(err);
+//     // consumer(conn);
+//     publisher(conn);
+//   });
