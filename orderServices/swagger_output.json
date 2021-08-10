@@ -156,17 +156,26 @@
       }
     },
     "/order/find-order-by-customerId": {
-      "get": {
+      "post": {
         "tags": [
           "order"
         ],
         "description": "",
         "parameters": [
           {
-            "name": "customerId",
-            "description": "enter customerId",
-            "in": "query",
-            "type": "string"
+            "name": "newOrder",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "customerId": {
+                  "type": "string",
+                  "example": "cust2"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -183,17 +192,26 @@
       }
     },
     "/order/find-order-by-id": {
-      "get": {
+      "post": {
         "tags": [
           "order"
         ],
         "description": "",
         "parameters": [
           {
-            "name": "orderId",
-            "description": "enter orderID",
-            "in": "query",
-            "type": "string"
+            "name": "newOrder",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "6108f2a804457a3f14d57c6e"
+                }
+              }
+            }
           }
         ],
         "responses": {
