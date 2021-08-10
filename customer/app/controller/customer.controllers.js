@@ -1,4 +1,5 @@
 const Customer = require("../services/customer.services.js");
+const logger = require('../../utils/logger.js');
 
 exports.createCustomer = (req, res) => {
     // Validate request
@@ -18,6 +19,7 @@ exports.createCustomer = (req, res) => {
         //     }
         //   });
         // } else {
+          logger.info(err)
           res.status(500).send({
             data:{
               success: false, 
@@ -41,6 +43,7 @@ exports.update = (req, res) => {
   Customer.updateCustomer(req.body.name, req.body.gender, req.body.city, req.body.phone, req.body.email, req.body.address, req.body.id, (err, data) => {
     if(err){
       if(err.kind === "not_found"){
+        logger.info(err)
         res.status(404).send({
           data: {
             success: false,
@@ -48,6 +51,7 @@ exports.update = (req, res) => {
           }
         })
       } else {
+        logger.info(err)
         res.status(500).send({
           data: {
             success: false,
@@ -70,6 +74,7 @@ exports.find = (req, res) =>{
   Customer.findCustomer(req.query.customerId, (err, data) =>{
     if(err) {
       if(err.kind === "not_found"){
+        logger.info(err)
         res.status(404).send({
           data:{
             success : false,
@@ -77,6 +82,7 @@ exports.find = (req, res) =>{
           }
         })
       } else{
+        logger.info(err)
         res.status(500).send({
           data:{
             success: false,
@@ -98,6 +104,7 @@ exports.find = (req, res) =>{
 exports. remove = (req, res) => {
   Customer.removeCustomer(req.body.customerId,(err, data) => {
     if(err){
+      logger.info(err)
       if(err.kind === "not_found") {
         res.status(404).send({
           data:{
@@ -127,6 +134,7 @@ exports. remove = (req, res) => {
 exports.customerLogin= (req, res)=>{
   Customer.findEmailandPassword(req.body.email, req.body.password, (err, data)=>{
     if(err){
+      logger.info(err)
       if(err.kinf === "not_found") {
         res.status(404).send({
           data:{

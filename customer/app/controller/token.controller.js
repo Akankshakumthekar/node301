@@ -1,4 +1,5 @@
 const Token = require("../services/token.services.js");
+const logger = require('../../utils/logger.js');
 
 exports.verifyToken = (req, res, next)=>{
     const bearerHeader = req.headers['authorization'];
@@ -21,6 +22,7 @@ exports.createToken= (req, res)=>{
     }
     Token.createToken(req.body.email, req.body.password, (err, data)=>{
       if(err){
+        logger.info(err);
         if(err.kind === "not_found") {
           res.status(404).send({
             data:{
