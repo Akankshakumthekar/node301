@@ -42,19 +42,18 @@ exports.findAll = (req, res) => {
 };
 
 exports.serchRestaurant = (req, res) => {
-    const id = req.body.id;
-    const location = req.body.location;
     const name = req.body.name;
+    const location = req.body.location;
     const rating = req.body.rating;
-    const condition =  ({id} || {location} || {name} || {rating})
-    Restaurant.find(condition)
+    Restaurant.find({ $or: [ {name: name}, {location: location}, {rating: rating}]})
       .then(data => {
-        if (!data)
+        if (!data){
           res.status(404).send({ message: "Not found restaurant"  });
-        else res.send(data);
+        } else {
+          res.send(data);
+        }
       })
       .catch(err => {
-        console.log(err);
         res
           .status(500)
           .send({ message: "Error retrieving restaurant "});

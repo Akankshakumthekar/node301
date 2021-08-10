@@ -20,11 +20,23 @@ describe('/GET restaurant', () => {
     });
 });
 
+describe('/POST search restaurant', () => {
+    it('it should GET all the restaurant', (done) => {
+        chai.request(app)
+            .post('/restaurant/search')
+            .send( {"name": "new- wood"} )          
+            .end((err, res) => {
+                if (err) done(err);
+                res.should.have.status(200);
+                res.body.should.be.a('array');
+                done();
+            });
+    });
+});
 
 describe('/POST restaurant', () => {
     it('it should not POST a restaurant', (done) => {
         let restaurant = {
-            id: "610a488001608f1d00f27cff",
             name: "new- wood",
             phone: 7889897889,
             location: {
@@ -67,7 +79,7 @@ describe('/PUT restaurant', () => {
         chai.request(app)
             .put('/restaurant/update-restaurant')
             .send({
-                    id: "610a488001608f1d00f27cff",
+                    id: "6110dbee076a4f0db033cc5e",
                     name: "new-wood",
                     phone: 7800897889,
                     location: {
@@ -107,7 +119,7 @@ describe('/DELETE restaurant', () => {
     it('it should DELETE a restaurant ', (done) => {        
               chai.request(app)
               .delete('/restaurant/delete' )
-              .send({ id: "610a48192aec8a3258e37fdd" })
+              .send({ id: "61124ca44cc95f0b202f7bc0" })
               .end((err, res) => {
                   if(err) done(err);
                     res.should.have.status(200);
@@ -116,7 +128,7 @@ describe('/DELETE restaurant', () => {
                 done();
               });
         });
-    });
+});
 
 
 

@@ -85,7 +85,7 @@ module.exports = function (app) {
             required: true,
             type: 'object',
             schema: {
-                "id": "610a638ed1b5311b5cd498eb"
+                "name": "new- wood"
             }
         } */
         const newRestaurant = req.body
