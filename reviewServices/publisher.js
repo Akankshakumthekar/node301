@@ -1,28 +1,28 @@
 
-'use strict';
-var amqp = require('amqplib/callback_api');
-const CONN_URL = 'amqps://atmydsaq:oDNdcj1Jr5N4E6gwnZbrCxkrIEQBtbZF@beaver.rmq.cloudamqp.com/atmydsaq';
+// 'use strict';
+// var amqp = require('amqplib/callback_api');
+// const CONN_URL = 'amqps://atmydsaq:oDNdcj1Jr5N4E6gwnZbrCxkrIEQBtbZF@beaver.rmq.cloudamqp.com/atmydsaq';
 
-let ch = null;
-module.exports = {
+// let ch = null;
+// module.exports = {
 
-   publishToQueue: async (queueName, data) => {
-      amqp.connect(CONN_URL, function (err, conn) {
-         conn.createChannel(function (err, channel) {
-            ch = channel;
-            ch.sendToQueue(queueName, new Buffer(data));
-         });
-      });
-   },
-   publishUpdateToQueue: async (queueName,data) =>{
-      amqp.connect(CONN_URL, function (err, conn) {
-         conn.createChannel(function (err, channel) {
-            ch = channel;
-            ch.sendToQueue(queueName, new Buffer(data));
-         });
-      });
-   }
-}
+//    publishToQueue: async (queueName, data) => {
+//       amqp.connect(CONN_URL, function (err, conn) {
+//          conn.createChannel(function (err, channel) {
+//             ch = channel;
+//             ch.sendToQueue(queueName, new Buffer(data));
+//          });
+//       });
+//    },
+//    publishUpdateToQueue: async (queueName,data) =>{
+//       amqp.connect(CONN_URL, function (err, conn) {
+//          conn.createChannel(function (err, channel) {
+//             ch = channel;
+//             ch.sendToQueue(queueName, new Buffer(data));
+//          });
+//       });
+//    }
+// }
 
 // queue_name = "rating_review_update";
 

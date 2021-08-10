@@ -1,25 +1,25 @@
-var amqp = require('amqplib/callback_api')
+// var amqp = require('amqplib/callback_api')
 
-amqp.connect(`amqps://atmydsaq:oDNdcj1Jr5N4E6gwnZbrCxkrIEQBtbZF@beaver.rmq.cloudamqp.com/atmydsaq`,(err,connection) =>{
-    if (err) {
-        throw err;
-    } else {
-        connection.createChannel((error,channel)=>{
-            if (error) {
-                throw error
-            } else {
-                let queueName = "new-rating";
-                channel.assertQueue(queueName,{
-                    durable:false
-                });
-                channel.consume(queueName,(msg) =>{
-                    console.log("Received: ",JSON.parse(msg.content.toString()));
-                    channel.ack(msg)
-                })
-            }
-        })
-    }
-})
+// amqp.connect(`amqps://atmydsaq:oDNdcj1Jr5N4E6gwnZbrCxkrIEQBtbZF@beaver.rmq.cloudamqp.com/atmydsaq`,(err,connection) =>{
+//     if (err) {
+//         throw err;
+//     } else {
+//         connection.createChannel((error,channel)=>{
+//             if (error) {
+//                 throw error
+//             } else {
+//                 let queueName = "new-rating";
+//                 channel.assertQueue(queueName,{
+//                     durable:false
+//                 });
+//                 channel.consume(queueName,(msg) =>{
+//                     console.log("Received: ",JSON.parse(msg.content.toString()));
+//                     channel.ack(msg)
+//                 })
+//             }
+//         })
+//     }
+// })
 
 
 
