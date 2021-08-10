@@ -92,7 +92,7 @@
       }
     },
     "/customer/update-customer": {
-      "post": {
+      "put": {
         "tags": [
           "Customer"
         ],

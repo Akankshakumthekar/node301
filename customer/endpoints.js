@@ -24,7 +24,7 @@ module.exports = function (app) {
         return res.status(500)
     })
 
-    app.post('/customer/update-customer', (req, res) =>{
+    app.put('/customer/update-customer', (req, res) =>{
         // #swagger.tags= ['Customer']
         /* #swagger.parameters[newCustomer] = {
             in: 'body',
