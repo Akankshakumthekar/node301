@@ -1,5 +1,6 @@
 const db = require("../models");
 const Review = db.reviews;
+const publisher = require("../../publisher.js");
 
 exports.create = (req, res) =>{
     if(!req.body.rating){
@@ -19,7 +20,9 @@ exports.create = (req, res) =>{
     review
     .save(review)
     .then(data =>{
+      publisher.publishToQueue("new-rating", JSON.stringify(review));
         res.send(data)
+
     }).catch(err =>{
         res.status(500).send({ 
             message:

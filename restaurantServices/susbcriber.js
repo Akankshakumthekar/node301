@@ -1,25 +1,26 @@
-// var amqp = require('amqplib/callback_api')
 
-// amqp.connect(`amqps://atmydsaq:oDNdcj1Jr5N4E6gwnZbrCxkrIEQBtbZF@beaver.rmq.cloudamqp.com/atmydsaq`,(err,connection) =>{
-//     if (err) {
-//         throw err;
-//     } else {
-//         connection.createChannel((error,channel)=>{
-//             if (error) {
-//                 throw error
-//             } else {
-//                 let queueName = "new-rating";
-//                 channel.assertQueue(queueName,{
-//                     durable:false
-//                 });
-//                 channel.consume(queueName,(msg) =>{
-//                     console.log("Received: ",JSON.parse(msg.content.toString()));
-//                     channel.ack(msg)
-//                 })
-//             }
-//         })
-//     }
-// })
+var amqp = require('amqplib/callback_api')
+
+amqp.connect(`amqps://hqiqjuyf:WwCXJpk3F2srpyZgj2arT7j4kpeQgJGv@puffin.rmq2.cloudamqp.com/hqiqjuyf`,(err,connection) =>{
+    if (err) {
+        throw err;
+    } else {
+        connection.createChannel((error,channel)=>{
+            if (error) {
+                throw error
+            } else {
+                let queueName = "new-rating";
+                channel.assertQueue(queueName,{
+                    durable:false
+                });
+                channel.consume(queueName,(msg) =>{
+                    console.log("Received: ",JSON.parse(msg.content.toString()));
+                    channel.ack(msg)
+                })
+            }
+        })
+    }
+})
 
 
 
