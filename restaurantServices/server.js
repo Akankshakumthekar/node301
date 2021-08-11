@@ -5,6 +5,7 @@ const db = require("./app/model");
 const mongoose = require("mongoose");
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('../restaurantServices/swagger_output.json');
+const logger = require('../restaurantServices/utils/logger.js');
 
 const app = express();
 
@@ -34,7 +35,8 @@ require("../restaurantServices/app/routes/restaurants.routes.js")(app);
 const PORT = process.env.PORT || 8081;
 app.listen(PORT,()=>{
     console.log("project is running")
-    // logger.info(`server started and running`)
+
+    logger.info(`server started and running`)
 });
 
 app.use('/restaurant/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));

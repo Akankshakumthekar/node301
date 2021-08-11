@@ -1,8 +1,10 @@
 const db = require("../model");
 const Restaurant = db.restaurants;
+const logger = require('../../utils/logger.js')
 
 exports.create = (req, res) =>{
     if(!req.body.name){
+      logger.error('body content is empty');
         res.status(400).send({message: "content can not be empty"});
         return;
     }
@@ -19,6 +21,7 @@ exports.create = (req, res) =>{
     .then(data =>{
         res.send(data)
     }).catch(err =>{
+      logger.error(err);
         res.status(500).send({
             message:
             err.message || "error occure while creting review"
@@ -30,11 +33,13 @@ exports.create = (req, res) =>{
 exports.findAll = (req, res) => { 
     Restaurant.find()
       .then(data => {
-        if (!data)
-          res.status(404).send({ message: "Not found data with" });
-        else res.send(data);
+        if (!data){
+          logger.error('data not found')
+          res.status(404).send({ message: "Not found data" });
+        } else res.send(data);
       })
       .catch(err => {
+        logger.error(err);
         res
           .status(500)
           .send({ message: "Error while retrieving data" });
@@ -48,12 +53,14 @@ exports.serchRestaurant = (req, res) => {
     Restaurant.find({ $or: [ {name: name}, {location: location}, {rating: rating}]})
       .then(data => {
         if (!data){
+          logger.error('restaurant not found ')
           res.status(404).send({ message: "Not found restaurant"  });
         } else {
           res.send(data);
         }
       })
       .catch(err => {
+        logger.error(err)
         res
           .status(500)
           .send({ message: "Error retrieving restaurant "});
@@ -62,6 +69,7 @@ exports.serchRestaurant = (req, res) => {
 
 exports.update = (req, res) => {
   if (!req.body) {
+    logger.error('data to be updated not be empty')
     return res.status(400).send({
       message: "Data to update can not be empty!"
     });
@@ -72,12 +80,14 @@ exports.update = (req, res) => {
   Restaurant.findByIdAndUpdate(id, req.body)
     .then(data => {
       if (!data) {
+        logger.error('restaurant not updated')
         res.status(404).send({
           message: `Cannot update restaurant.`
         });
       } else res.send({ message: "restaurant was updated successfully." });
     })
     .catch(err => {
+      logger.error(err)
       res.status(500).send({
         message: "Error updating restaurant with id=" + id
       });
@@ -90,6 +100,7 @@ exports.delete = (req, res) => {
   Restaurant.findByIdAndRemove(id)
     .then(data => {
       if (!data) {
+        logger.error('restaurant not deleted')
         res.status(404).send({
           message: `Cannot delete Restaurant.`
         });
@@ -100,6 +111,7 @@ exports.delete = (req, res) => {
       }
     })
     .catch(err => {
+      logger.error(err)
       res.status(500).send({
         message: "Could not delete Restaurant" 
       });
