@@ -124,12 +124,12 @@ describe('/DELETE customer', () => {
               chai.request(app)
               .delete('/customer/delete-cutomer')
               .set({Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyZGF0YSI6IntcIklkXCI6MSxcIm5hbWVcIjpcImFkbWluXCIsXCJlbWFpbFwiOlwiYWRtaW5AZ21haWwuY29tXCIsXCJwYXNzd29yZFwiOlwiJDJhJDA4JFhSbVIuTzhJdWQxdnhyQjhMUGEyc3VnS1hZSy91VDJwMmh6NXV4NXlncUV6blVGbjU1eEQ2XCIsXCJyb2xlXCI6XCJhZG1pblwifSIsImlhdCI6MTYyNzU0NTIyMCwiZXhwIjoxNjI3NjMxNjIwfQ.OnnXeQmbDK0mfMXrpsktxKPQzEjzM8t6jgTc193JgeA'})
-              .send({customerId : 14})
+              .send({customerId : 25})
               .end((err, res) => {
                   if(err) done(err);
                     res.should.have.status(200);
                     res.body.should.be.a('object');
-                    res.body.should.have.property('message').eql('Customer deleted successfullt!');
+                    res.body.should.have.property('data').property('message').eql('Customer deleted successfullt!');
                 done();
               });
         });

@@ -176,7 +176,7 @@
       }
     },
     "/review/find-review-by-id": {
-      "get": {
+      "post": {
         "tags": [
           "Review"
         ],
