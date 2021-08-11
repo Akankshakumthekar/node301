@@ -60,7 +60,7 @@ module.exports = function (app) {
         return res.status(500)
     })
 
-    app.get('/review/find-review-by-id', (req, res) =>{
+    app.post('/review/find-review-by-id', (req, res) =>{
          // #swagger.tags= ['Review']
          /* #swagger.parameters[newReview] = {
             in: 'body',

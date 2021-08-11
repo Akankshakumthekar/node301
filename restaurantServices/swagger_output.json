@@ -238,9 +238,9 @@
             "schema": {
               "type": "object",
               "properties": {
-                "id": {
+                "name": {
                   "type": "string",
-                  "example": "610a638ed1b5311b5cd498eb"
+                  "example": "new- wood"
                 }
               }
             }
