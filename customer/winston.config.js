@@ -23,7 +23,9 @@ const logger = winston.createLogger(logConfiguration);
 logger.log({
     message: 'hello, winstone',
 
-    levele: 'info'
+    levele: 'info',
+    
+    level: 'error'
 })
 
 logger.info('hello, winstone');

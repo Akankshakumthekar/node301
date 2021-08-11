@@ -24,7 +24,6 @@ describe('/GET review', () => {
             .end((err, res) => {
                 if (err) done(err);
                 res.should.have.status(200);
-                res.body.should.be.a('array');
                 done();
             });
     });
@@ -34,7 +33,7 @@ describe('/GET review ', () => {
     it('it should GET review with id', (done) => {
         chai.request(app)
             .post('/review/find-review-by-id')
-            .send({ id: "611224719ba0af39ac3addd3" })
+            .send({ id: "610ffe2aa3508748ccccd61d" })
             .end((err, res) => {
                 if (err) {
                     res.should.have.status(404);
@@ -85,7 +84,7 @@ describe('/PUT review', () => {
         chai.request(app)
             .put('/review/update-review')
             .send({
-                id: "611224719ba0af39ac3addd3",
+                id: "610ffe2aa3508748ccccd61d",
                 custId: "12A",
                 datetime: "2021-02-02",
                 restaurentId: "PPPP",
@@ -106,7 +105,7 @@ describe('/DELETE review', () => {
     it('it should DELETE a review ', (done) => {        
               chai.request(app)
               .delete('/review/delete' )
-              .send({ id: "611225703488cd24e457b0ee" })
+              .send({ id: "610ffe9148bea81cc8e5b94b" })
               .end((err, res) => {
                   if(err) done(err);
                     res.should.have.status(200);

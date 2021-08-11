@@ -108,7 +108,7 @@ describe('/DELETE order', () => {
     it('it should DELETE a order ', (done) => {
               chai.request(app)
               .delete('/order/delete' )
-              .send({ id: "611252e7b980f229984e1669" })
+              .send({ id: "611251ee0e839d32b446a409" })
               .end((err, res) => {
                   if(err) done(err);
                     res.should.have.status(200);

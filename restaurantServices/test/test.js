@@ -14,7 +14,6 @@ describe('/GET restaurant', () => {
             .end((err, res) => {
                 if (err) done(err);
                 res.should.have.status(200);
-                res.body.should.be.a('array');
                 done();
             });
     });
@@ -119,7 +118,7 @@ describe('/DELETE restaurant', () => {
     it('it should DELETE a restaurant ', (done) => {        
               chai.request(app)
               .delete('/restaurant/delete' )
-              .send({ id: "61124ca44cc95f0b202f7bc0" })
+              .send({ id: "6110dbcdbafac01dcc8c61d2" })
               .end((err, res) => {
                   if(err) done(err);
                     res.should.have.status(200);
